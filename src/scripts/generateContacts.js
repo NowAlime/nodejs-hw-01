@@ -33,4 +33,5 @@ const generateContacts = async (number) => {
     console.error(`Error when trying to write to the file ${PATH_DB}`, error);
   }
 };
+
 generateContacts(5);

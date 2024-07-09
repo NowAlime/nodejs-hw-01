@@ -1,5 +1,6 @@
 import { PATH_DB } from '../constants/contacts.js';
 import fs from 'fs/promises';
+
 export const getAllContacts = async () => {
   let allContacts = [];
   try {
@@ -8,10 +9,16 @@ export const getAllContacts = async () => {
   } catch (err) {
     if (err.code === 'ENOENT') {
       console.warn(`Can't find ${PATH_DB} creating new`);
+    } else {
+      console.error('error:', err);
     }
-    console.error('error:', err);
   }
   return allContacts;
 };
 
-console.log(await getAllContacts());
+const showAllContacts = async () => {
+  const contacts = await getAllContacts();
+  console.log(contacts);
+};
+
+showAllContacts();
